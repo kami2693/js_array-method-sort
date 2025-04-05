@@ -6,43 +6,18 @@
 function applyCustomSort() {
   [].__proto__.sort2 = function (compareFunction) {
     // Create a new variable for the comparison function
-    const compareFn =
-      typeof compareFunction === 'function'
-        ? compareFunction
-        : (a, b) => {
-          if (a === b) {
-            return 0;
-          }
-
-          if (a === undefined) {
-            return 1;
-          }
-
-          if (b === undefined) {
-            return -1;
-          }
-
-          if (a === null) {
-            return 1;
-          }
-
-          if (b === null) {
-            return -1;
-          }
-
-          const aString = String(a);
-          const bString = String(b);
-
-          if (aString < bString) {
-            return -1;
-          }
-
-          if (aString > bString) {
-            return 1;
-          }
-
-          return 0;
-        };
+    const compareFn = typeof compareFunction === 'function' ? compareFunction : (a, b) => {
+      if (a === b) return 0;
+      if (a === undefined) return 1;
+      if (b === undefined) return -1;
+      if (a === null) return 1;
+      if (b === null) return -1;
+      const aString = String(a);
+      const bString = String(b);
+      if (aString < bString) return -1;
+      if (aString > bString) return 1;
+      return 0;
+    };
 
     // Merge sort implementation
     const merge = (left, right) => {
@@ -66,14 +41,10 @@ function applyCustomSort() {
     };
 
     const mergeSort = arr => {
-      if (arr.length <= 1) {
-        return arr;
-      }
-
+      if (arr.length <= 1) return arr;
       const middle = Math.floor(arr.length / 2);
       const left = arr.slice(0, middle);
       const right = arr.slice(middle);
-
       return merge(mergeSort(left), mergeSort(right));
     };
 
