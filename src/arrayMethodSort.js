@@ -35,9 +35,7 @@ function applyCustomSort() {
         }
       }
 
-      return result
-        .concat(left.slice(leftIndex))
-        .concat(right.slice(rightIndex));
+      return result.concat(left.slice(leftIndex)).concat(right.slice(rightIndex));
     };
 
     const mergeSort = arr => {
